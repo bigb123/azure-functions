@@ -7,17 +7,11 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-18.04'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
 - task: AzureResourceManagerTemplateDeployment@3
+  displayName: 'Deploy an ARM template'
   inputs:
     deploymentScope: 'Subscription'
     azureResourceManagerConnection: 'Free Trial(3fa33b08-9f1e-476b-869a-2b3617d68031)'
