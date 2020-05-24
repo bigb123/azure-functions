@@ -17,3 +17,13 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Subscription'
+    azureResourceManagerConnection: 'Free Trial(3fa33b08-9f1e-476b-869a-2b3617d68031)'
+    subscriptionId: '3fa33b08-9f1e-476b-869a-2b3617d68031'
+    location: 'East US'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/bigb123/azure-functions/master/functions-arm-subscription_level.json'
+    csmParametersFileLink: 'https://raw.githubusercontent.com/bigb123/azure-functions/master/functions-arm-subscription_level.parameters.json'
+    deploymentMode: 'Incremental'
