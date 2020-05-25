@@ -10,9 +10,6 @@
         },
         "storageAccountName":{
             "value": "storageaccountfromarm"
-        },
-        "variableThatIsNotInUse":{
-            "value": "variableThatIsNotInUse"
         }
     }
 }
