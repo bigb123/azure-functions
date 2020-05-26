@@ -11,6 +11,9 @@
         },
         "storageAccountName": {
             "type": "string"
+        },
+        "functionAppName": {
+            "type": "string"
         }
     },
     "resources": [
@@ -46,6 +49,18 @@
                             "kind": "StorageV2",
                             "properties": {
                                 "supportsHttpsTrafficOnly": true
+                            }
+                        },
+                        {
+                            "type": "Microsoft.Web/sites",
+                            "apiVersion": "2019-08-01",
+                            "kind": "functionapp,linux",
+                            "location": "[parameters('locationName')]",
+                            "name": "[parameters('functionAppName')]",
+                            "properties": {
+                                "siteConfig": {
+                                    "nodeVersion": "12"
+                                }
                             }
                         }
                     ]
