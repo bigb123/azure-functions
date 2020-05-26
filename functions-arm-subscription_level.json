@@ -58,6 +58,7 @@
                             "location": "[parameters('locationName')]",
                             "name": "[parameters('functionAppName')]",
                             "properties": {
+                                "reserved": true, // needed for running the function on Linux
                                 "siteConfig": {
                                     "nodeVersion": "12"
                                 }
