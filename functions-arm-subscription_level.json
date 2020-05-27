@@ -5,7 +5,7 @@
         "resourceGroupName": {
             "type": "string"
         },
-        "locationName":{
+        "location":{
             "type": "string",
             "defaultValue": "East US"
         },
@@ -21,7 +21,7 @@
             "type": "Microsoft.Resources/resourceGroups",
             "apiVersion": "2019-10-01",
             "name": "[parameters('resourceGroupName')]",
-            "location": "[parameters('locationName')]",
+            "location": "[parameters('location')]",
             "properties": {}
         },
         {
@@ -42,7 +42,7 @@
                             "type": "Microsoft.Storage/storageAccounts",
                             "apiVersion": "2019-06-01",
                             "name": "[parameters('storageAccountName')]",
-                            "location": "[parameters('locationName')]",
+                            "location": "[parameters('location')]",
                             "sku":{
                                 "name": "Standard_LRS"
                             },
@@ -55,12 +55,38 @@
                             "type": "Microsoft.Web/sites",
                             "apiVersion": "2019-08-01",
                             "kind": "functionapp,linux",
-                            "location": "[parameters('locationName')]",
+                            "location": "[parameters('location')]",
                             "name": "[parameters('functionAppName')]",
                             "properties": {
                                 "reserved": true, // needed for running the function on Linux
                                 "siteConfig": {
-                                    "nodeVersion": "12"
+                                    "nodeVersion": "~12",
+                                    "appSettings": [
+                                        {
+                                            "name": "AzureWebJobsStorage",
+                                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountName'),'2015-05-01-preview').key1)]"
+                                        },
+                                        {
+                                            "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+                                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
+                                        },
+                                        {
+                                            "name": "WEBSITE_CONTENTSHARE",
+                                            "value": "[toLower(parameters('functionAppName'))]"
+                                        },
+                                        {
+                                            "name": "FUNCTION_APP_EDIT_MODE",
+                                            "value": "true"
+                                        },
+                                        {
+                                            "name": "FUNCTIONS_WORKER_RUNTIME",
+                                            "value": "node"
+                                        },
+                                        {
+                                            "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+                                            "value": "null"
+                                        }
+                                    ]
                                 }
                             }
                         }

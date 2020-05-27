@@ -5,7 +5,7 @@
         "resourceGroupName": {
             "value": "resourceGroupFromArm"
         },
-        "locationName":{
+        "location":{
             "value": "East US"
         },
         "storageAccountName":{
