@@ -58,9 +58,10 @@
                             "location": "[parameters('location')]",
                             "name": "[parameters('functionAppName')]",
                             // RESOURCE ID function works different for subscription-level depoyment
-                            "dependsOn": [
-                                "[resourceId(parameters('resourceGroupName'), 'Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
-                              ],
+                            // I have to fix it
+                            // "dependsOn": [
+                            //     "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+                            //   ],
                             "properties": {
                                 "reserved": true, // needed for running the function on Linux
                                 "siteConfig": {
