@@ -60,7 +60,7 @@
                             // RESOURCE ID function works different for subscription-level depoyment
                             // I have to fix it
                             "dependsOn": [
-                                "[resourceId('Microsoft.Resources/resourceGroups', parameters('resourceGroupName'), parameters('storageAccountName'))]"
+                                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
                               ],
                             "properties": {
                                 "reserved": true, // needed for running the function on Linux
