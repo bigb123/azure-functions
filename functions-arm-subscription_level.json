@@ -57,9 +57,9 @@
                             "kind": "functionapp,linux",
                             "location": "[parameters('location')]",
                             "name": "[parameters('functionAppName')]",
-                            "dependsOn": [
-                                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
-                              ],
+                            // "dependsOn": [
+                            //     "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+                            //   ],
                             "properties": {
                                 "reserved": true, // needed for running the function on Linux
                                 "siteConfig": {
